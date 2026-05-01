@@ -4,12 +4,34 @@ Electron is a full-stack civic education platform designed to empower citizens t
 
 ## 🚀 Features
 
-- **Interactive Learning**: 4 core modules covering essential civic topics.
-- **AI Voice Guide**: Integrated Google Cloud Text-to-Speech (TTS) for high-quality audio guidance.
-- **AI Chatbot**: Intelligent sidebar powered by Google Gemini for real-time questions and clarifications.
-- **Localization**: Support for multiple languages, including English and Tamil.
-- **Progress Tracking**: Persistent user progress saved to Firebase Firestore.
-- **Certification**: Automated certificate generation upon module completion.
+### 🏛️ Interactive Civic Modules
+- **Module 1: Democratic Foundations**: Deep dive into the principles of democracy and governance.
+- **Module 2: The Electoral Process**: Step-by-step guide to how elections work, featuring a **3D Styled EVM (Electronic Voting Machine)** simulation.
+- **Module 3: Citizen Rights & Duties**: Comprehensive overview of fundamental rights and responsibilities.
+- **Module 4: Local Governance**: Understanding the role of Panchayats and Municipalities.
+
+### 🤖 AI-Powered Assistance
+- **Intelligent Chat Companion**: A sidebar powered by **Google Gemini AI** that provides context-aware answers to user queries within each module.
+- **AI Voice Guide**: Integrated **Google Cloud Text-to-Speech (TTS)** offering natural-sounding audio narrations for all content, supporting multiple regional languages.
+
+### 🌍 Localization & Accessibility
+- **Multi-Language Support**: Fully localized interface and content in:
+  - English
+  - Hindi (हिन्दी)
+  - Tamil (தமிழ்)
+  - Telugu (తెలుగు)
+  - Kannada (ಕನ್ನಡ)
+- **Responsive Design**: Optimized for Desktop, Tablet, and Mobile devices using a mobile-first grid system.
+
+### 📈 Gamification & Progress
+- **Dynamic Roadmap**: Visual journey tracking through the curriculum.
+- **Progress Persistence**: Real-time synchronization of module completion and scores via **Firebase Firestore**.
+- **Automated Certification**: Generation of a personalized completion certificate once all modules are finished.
+
+### 🔐 Security & Reliability
+- **Secure Authentication**: Robust user sign-in and sign-up powered by **Firebase Authentication**.
+- **Enterprise-Grade Infrastructure**: Deployed on **Google Cloud Platform (Cloud Run)** with automated CI/CD via **Cloud Build**.
+- **API Security**: Rate limiting, CORS protection, and secure secret management using **GCP Secret Manager**.
 
 ## 🛠️ Tech Stack
 
