@@ -1,0 +1,39 @@
+steps:
+  # Build the client image with the server URL as a build arg
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "build"
+      - "--build-arg"
+      - "VITE_API_BASE_URL=$_SERVER_URL"
+      - "-t"
+      - "asia-south1-docker.pkg.dev/$PROJECT_ID/electron/client:latest"
+      - "./client"
+    id: "build-client"
+
+  # Push the image
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - "push"
+      - "asia-south1-docker.pkg.dev/$PROJECT_ID/electron/client:latest"
+    id: "push-client"
+    waitFor: ["build-client"]
+
+  # Deploy to Cloud Run
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    args:
+      - "run"
+      - "deploy"
+      - "electron-client"
+      - "--image=asia-south1-docker.pkg.dev/$PROJECT_ID/electron/client:latest"
+      - "--region=asia-south1"
+      - "--platform=managed"
+      - "--allow-unauthenticated"
+    id: "deploy-client"
+    waitFor: ["push-client"]
+
+substitutions:
+  _SERVER_URL: "https://electron-server-711699932442.asia-south1.run.app"
+
+options:
+  logging: CLOUD_LOGGING_ONLY

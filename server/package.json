@@ -1,0 +1,48 @@
+{
+  "name": "electron-server",
+  "version": "1.0.0",
+  "description": "Electorin civic education backend",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/ tests/",
+    "format": "prettier --write src/ tests/"
+  },
+  "dependencies": {
+    "@google-cloud/secret-manager": "^5.6.0",
+    "@google-cloud/text-to-speech": "^5.3.0",
+    "@google/generative-ai": "^0.21.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "firebase-admin": "^12.3.0",
+    "helmet": "^7.1.0",
+    "md5": "^2.3.0",
+    "winston": "^3.13.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "eslint": "^9.5.0",
+    "globals": "^15.6.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.2",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverage": true,
+    "coverageThreshold": {
+      "global": {
+        "lines": 70
+      }
+    },
+    "coveragePathIgnorePatterns": ["/node_modules/"],
+    "testMatch": ["**/tests/**/*.test.js"]
+  }
+}
