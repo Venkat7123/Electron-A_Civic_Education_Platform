@@ -5,33 +5,27 @@ Electron is a full-stack civic education platform designed to empower citizens t
 ## 🚀 Features
 
 ### 🏛️ Interactive Civic Modules
-- **Module 1: Democratic Foundations**: Deep dive into the principles of democracy and governance.
-- **Module 2: The Electoral Process**: Step-by-step guide to how elections work, featuring a **3D Styled EVM (Electronic Voting Machine)** simulation.
-- **Module 3: Citizen Rights & Duties**: Comprehensive overview of fundamental rights and responsibilities.
-- **Module 4: Local Governance**: Understanding the role of Panchayats and Municipalities.
+- **Module 1: Democratic Foundations**: An introduction to the core principles of democracy, the Constitution of India, and the three branches of government (Legislature, Executive, and Judiciary).
+- **Module 2: The Electoral Process**: A practical guide to voter registration (Form 6), the Model Code of Conduct, and a **3D Styled EVM (Electronic Voting Machine)** simulation that explains how votes are cast and secured.
+- **Module 3: Citizen Rights & Duties**: A deep dive into Fundamental Rights, Directive Principles, and the Fundamental Duties of every Indian citizen, using real-world scenarios.
+- **Module 4: Local Governance**: Understanding the 73rd and 74th Amendments, the role of Gram Panchayats, Municipal Corporations, and how citizens can participate in local decision-making.
 
 ### 🤖 AI-Powered Assistance
-- **Intelligent Chat Companion**: A sidebar powered by **Google Gemini AI** that provides context-aware answers to user queries within each module.
-- **AI Voice Guide**: Integrated **Google Cloud Text-to-Speech (TTS)** offering natural-sounding audio narrations for all content, supporting multiple regional languages.
+- **Intelligent Chat Companion**: A contextual sidebar powered by **Google Gemini AI**. It doesn't just answer general questions; it understands which module and step the user is currently on to provide tailored guidance.
+- **AI Voice Guide**: Uses **Google Cloud Text-to-Speech (Wavenet)** to provide high-quality audio narrations. It automatically detects the selected language and switches to native-sounding voices (e.g., `ta-IN-Wavenet-D` for Tamil).
 
 ### 🌍 Localization & Accessibility
-- **Multi-Language Support**: Fully localized interface and content in:
-  - English
-  - Tamil (தமிழ்)
+- **Full Multi-Language Support**: The entire platform (UI, Content, AI Chat, and Voice) is architected for localization.
+  - English (Full Support)
+  - Tamil (தமிழ்) (Full Support)
   - Hindi (हिन्दी) - Coming Soon
   - Telugu (తెలుగు) - Coming Soon
   - Kannada (ಕನ್ನಡ) - Coming Soon
-- **Responsive Design**: Optimized for Desktop, Tablet, and Mobile devices using a mobile-first grid system.
-
-### 📈 Gamification & Progress
-- **Dynamic Roadmap**: Visual journey tracking through the curriculum.
-- **Progress Persistence**: Real-time synchronization of module completion and scores via **Firebase Firestore**.
-- **Automated Certification**: Generation of a personalized completion certificate once all modules are finished.
 
 ### 🔐 Security & Reliability
 - **Secure Authentication**: Robust user sign-in and sign-up powered by **Firebase Authentication**.
-- **Enterprise-Grade Infrastructure**: Deployed on **Google Cloud Platform (Cloud Run)** with automated CI/CD via **Cloud Build**.
-- **API Security**: Rate limiting, CORS protection, and secure secret management using **GCP Secret Manager**.
+- **Real-time Synchronization**: All your progress and chat history are securely stored and synced across devices.
+- **Privacy First**: We only store essential progress data to help you complete your civic journey.
 
 ## 🛠️ Tech Stack
 
