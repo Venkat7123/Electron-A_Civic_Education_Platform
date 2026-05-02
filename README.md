@@ -1,6 +1,8 @@
 # Electron: Civic Education Platform
 
-Electron is a full-stack civic education platform designed to empower citizens through interactive modules, AI-driven guidance, and localized content.
+**Electron** is a comprehensive civic education platform built to bridge the gap between complex legal/political concepts and everyday citizens. Our mission is to transform how people learn about their rights and the democratic process by replacing static textbooks with an interactive, AI-powered experience.
+
+Through a series of immersive modules, users can explore everything from the foundations of the Indian Constitution to the physical mechanics of an EVM. With localized content and real-time AI guidance, Electron makes civic literacy accessible to everyone, regardless of their language or background.
 
 ## 🚀 Features
 
