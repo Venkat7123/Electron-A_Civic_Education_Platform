@@ -17,8 +17,8 @@ Electron is a full-stack civic education platform designed to empower citizens t
 ### 🌍 Localization & Accessibility
 - **Multi-Language Support**: Fully localized interface and content in:
   - English
-  - Hindi (हिन्दी)
   - Tamil (தமிழ்)
+  - Hindi (हिन्दी)
   - Telugu (తెలుగు)
   - Kannada (ಕನ್ನಡ)
 - **Responsive Design**: Optimized for Desktop, Tablet, and Mobile devices using a mobile-first grid system.

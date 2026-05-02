@@ -20,7 +20,7 @@ const MODULE_NAMES = {
   "module-2": "Voter Registration & Voter ID",
   "module-3": "EVM & Voting Process",
   "module-4": "Election Results & Government Formation",
-  "dashboard": "Election Learning Dashboard",
+  dashboard: "Election Learning Dashboard",
 };
 
 /**
@@ -48,7 +48,7 @@ function formatHistory(history) {
 
   // Gemini requires the first message in history to be from the 'user' role.
   // We strip any leading 'model' messages (like initial greetings) to avoid 500 errors.
-  const firstUserIndex = formatted.findIndex(m => m.role === "user");
+  const firstUserIndex = formatted.findIndex((m) => m.role === "user");
   return firstUserIndex === -1 ? [] : formatted.slice(firstUserIndex);
 }
 
@@ -61,7 +61,10 @@ function formatHistory(history) {
  */
 async function generateReply(moduleContext, history, userMessage) {
   // Graceful stub when API key is missing (dev mode)
-  if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "your-gemini-api-key") {
+  if (
+    !process.env.GEMINI_API_KEY ||
+    process.env.GEMINI_API_KEY === "your-gemini-api-key"
+  ) {
     return `[Dev mode] Gemini API key not set. Your question was: "${userMessage}"`;
   }
 

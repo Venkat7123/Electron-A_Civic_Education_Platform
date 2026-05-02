@@ -1,26 +1,10 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { loadProgress, saveProgress, DEFAULT, type ProgressState } from "@/lib/storage";
 import { syncUserProgress, fetchUserProgress, logChatMessage } from "@/gcp/firestore";
 import { auth } from "@/gcp/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import type { Lang } from "@/i18n";
-
-type Ctx = {
-  state: ProgressState;
-  setName: (n: string) => void;
-  setEmail: (e: string) => void;
-  setLang: (l: Lang) => void;
-  setGuidedTouch: (v: boolean) => void;
-  /** Mark a specific step done and recalculate module progress */
-  updateStep: (moduleId: 1 | 2 | 3 | 4, stepIndex: number) => void;
-  /** Legacy: set overall progress + completion directly */
-  updateModule: (id: 1 | 2 | 3 | 4, progress: number, completed?: boolean) => void;
-  pushChat: (moduleKey: string, msg: { from: "user" | "bot"; text: string }) => void;
-  overall: number;
-  reset: () => void;
-};
-
-const ProgressCtx = createContext<Ctx | null>(null);
+import { ProgressCtx } from "@/hooks/useProgress";
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<ProgressState>(() => loadProgress());
@@ -118,10 +102,4 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       {children}
     </ProgressCtx.Provider>
   );
-}
-
-export function useProgress() {
-  const ctx = useContext(ProgressCtx);
-  if (!ctx) throw new Error("useProgress must be used within ProgressProvider");
-  return ctx;
 }

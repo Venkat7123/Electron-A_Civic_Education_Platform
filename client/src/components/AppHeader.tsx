@@ -42,10 +42,8 @@ export function AppHeader({ onChat, showProgress = false, marketing = false }: {
         {/* Center: Marketing Links (if any) */}
         {marketing && (
           <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 text-sm text-muted-foreground md:flex">
-            <a href="#about" className="hover:text-foreground">{t("about")}</a>
             <NavLink to="/roadmap" className="hover:text-foreground">{t("roadmap")}</NavLink>
             <NavLink to="/dashboard" className="hover:text-foreground">{t("modules")}</NavLink>
-            <a href="#contact" className="hover:text-foreground">{t("contact")}</a>
           </nav>
         )}
 
@@ -64,10 +62,7 @@ export function AppHeader({ onChat, showProgress = false, marketing = false }: {
           )}
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="relative h-8 w-8 rounded-full hover:bg-slate-100 transition-colors">
-              <Bell className="h-4 w-4 text-slate-500" />
-              <div className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-destructive border-2 border-white" />
-            </Button>
+            
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -94,13 +89,15 @@ export function AppHeader({ onChat, showProgress = false, marketing = false }: {
             )}
             
             {state.email ? (
-              <div className="group relative z-50">
-                <button className="flex items-center gap-2 rounded-full p-0.5 transition-all hover:ring-4 hover:ring-primary/10">
-                  <div className="rounded-full ring-2 ring-primary/20 ring-offset-1 ring-offset-background shadow-sm transition-all group-hover:ring-primary/40">
-                    <ElectronAvatar size={36} />
-                  </div>
-                </button>
-                <div className="absolute right-0 top-full mt-2 hidden w-64 rounded-2xl border bg-white p-5 shadow-2xl group-hover:block animate-in fade-in slide-in-from-top-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="group flex items-center gap-2 rounded-full p-0.5 transition-all hover:ring-4 hover:ring-primary/10 outline-none">
+                    <div className="rounded-full ring-2 ring-primary/20 ring-offset-1 ring-offset-background shadow-sm transition-all group-hover:ring-primary/40">
+                      <ElectronAvatar size={36} />
+                    </div>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64 rounded-2xl border bg-white p-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200">
                   <div className="flex items-center gap-4 mb-6 px-1">
                     <ElectronAvatar size={52} />
                     <div className="flex-1 overflow-hidden">
@@ -122,8 +119,8 @@ export function AppHeader({ onChat, showProgress = false, marketing = false }: {
                     <LogOut className="h-4 w-4" />
                     Logout
                   </Button>
-                </div>
-              </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               marketing && (
                 <Button asChild variant="default" size="sm" className="h-8 rounded-lg px-4 font-bold shadow-lg shadow-primary/20">

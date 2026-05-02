@@ -17,7 +17,12 @@ router.post("/", verifyToken, chatRateLimiter, async (req, res, next) => {
   try {
     const parsed = chatMessageSchema.safeParse(req.body);
     if (!parsed.success) {
-      return res.status(400).json({ error: "Invalid request body", details: parsed.error.flatten() });
+      return res
+        .status(400)
+        .json({
+          error: "Invalid request body",
+          details: parsed.error.flatten(),
+        });
     }
 
     const { message, moduleContext, history } = parsed.data;
@@ -30,7 +35,7 @@ router.post("/", verifyToken, chatRateLimiter, async (req, res, next) => {
     try {
       await saveChatMessage(uid, moduleContext, "user", message);
       await saveChatMessage(uid, moduleContext, "model", reply);
-    } catch (fsErr) {
+    } catch (_fsErr) {
       // Log but don't fail — chat still works even if persistence fails
     }
 
@@ -48,7 +53,9 @@ router.get("/history", verifyToken, async (req, res, next) => {
   try {
     const { moduleContext } = req.query;
     if (!moduleContext) {
-      return res.status(400).json({ error: "moduleContext query param is required" });
+      return res
+        .status(400)
+        .json({ error: "moduleContext query param is required" });
     }
 
     const history = await getChatHistory(req.user.uid, moduleContext);

@@ -2,7 +2,10 @@
 
 const express = require("express");
 const { verifyToken } = require("../middleware/verifyToken");
-const { progressSchema, MODULE_IDS } = require("../validators/progress.validator");
+const {
+  progressSchema,
+  MODULE_IDS,
+} = require("../validators/progress.validator");
 const { getProgress, updateProgress } = require("../services/firestore");
 
 const router = express.Router();
@@ -37,7 +40,12 @@ router.post("/:moduleId", verifyToken, async (req, res, next) => {
 
     const parsed = progressSchema.safeParse(req.body);
     if (!parsed.success) {
-      return res.status(400).json({ error: "Invalid request body", details: parsed.error.flatten() });
+      return res
+        .status(400)
+        .json({
+          error: "Invalid request body",
+          details: parsed.error.flatten(),
+        });
     }
 
     await updateProgress(req.user.uid, moduleId, parsed.data);

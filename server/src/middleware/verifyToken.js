@@ -11,7 +11,9 @@ async function verifyToken(req, res, next) {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ error: "Missing or invalid authorization header" });
+    return res
+      .status(401)
+      .json({ error: "Missing or invalid authorization header" });
   }
 
   const token = authHeader.split("Bearer ")[1];
@@ -24,7 +26,7 @@ async function verifyToken(req, res, next) {
       name: decoded.name || decoded.email?.split("@")[0] || "User",
     };
     return next();
-  } catch (err) {
+  } catch (_err) {
     return res.status(401).json({ error: "Invalid or expired token" });
   }
 }

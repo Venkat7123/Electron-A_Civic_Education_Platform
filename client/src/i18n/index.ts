@@ -1,5 +1,4 @@
 import { en } from "./en";
-import { hi } from "./hi";
 import { ta } from "./ta";
 
 export type Lang = "en" | "hi" | "ta" | "te" | "kn";
@@ -11,5 +10,5 @@ export const SUPPORTED: { code: Lang; label: string; native: string; ready: bool
   { code: "kn", label: "Kannada", native: "ಕನ್ನಡ", ready: false },
 ];
 
-export const dictionaries = { en, hi, ta } as const;
+export const dictionaries = { en, ta } as const;
 export type DictKey = keyof typeof en;

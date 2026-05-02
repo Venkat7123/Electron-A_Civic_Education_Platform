@@ -477,7 +477,7 @@ function CertDraggable() {
   const style = transform ? { transform: `translate3d(${transform.x}px,${transform.y}px,0)`, touchAction: "none" } : { touchAction: "none" as const };
   return (
     <div ref={setNodeRef} data-gt-id="gt-certificate" style={style} {...listeners} {...attributes}
-      className="cursor-grab rounded-xl border-2 border-amber-400 bg-amber-50 px-4 py-3 shadow-lg text-center hover:shadow-xl active:scale-95 transition">
+      className="cursor-grab rounded-xl border-2 border-amber-400 bg-amber-50 px-4 py-3 shadow-lg text-center hover:shadow-xl active:scale-95 transition-shadow">
       <p className="text-2xl">📜</p>
       <p className="text-[10px] font-bold text-amber-800">Certificate<br/>of Election</p>
     </div>

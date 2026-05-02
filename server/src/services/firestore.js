@@ -32,7 +32,7 @@ async function getProgress(uid) {
       result[moduleId] = doc.exists
         ? doc.data()
         : { completed: false, score: 0, unlockedAt: null };
-    })
+    }),
   );
   // module1 is always unlocked
   if (!result.module1.unlockedAt) {
@@ -52,8 +52,12 @@ async function updateProgress(uid, moduleId, { completed, score }) {
     .doc(moduleId);
 
   await progressRef.set(
-    { completed, score, updatedAt: admin.firestore.FieldValue.serverTimestamp() },
-    { merge: true }
+    {
+      completed,
+      score,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    },
+    { merge: true },
   );
 
   // Unlock next module if this one is completed
@@ -77,16 +81,12 @@ async function updateProgress(uid, moduleId, { completed, score }) {
  * Save a single chat message to Firestore.
  */
 async function saveChatMessage(uid, moduleContext, role, message) {
-  await db()
-    .collection("users")
-    .doc(uid)
-    .collection("chats")
-    .add({
-      role,
-      message,
-      moduleContext,
-      timestamp: admin.firestore.FieldValue.serverTimestamp(),
-    });
+  await db().collection("users").doc(uid).collection("chats").add({
+    role,
+    message,
+    moduleContext,
+    timestamp: admin.firestore.FieldValue.serverTimestamp(),
+  });
 }
 
 /**
@@ -112,7 +112,12 @@ async function getChatHistory(uid, moduleContext) {
  * Fetch the user's certificate document (if any).
  */
 async function getCertificate(uid) {
-  const doc = await db().collection("users").doc(uid).collection("certificate").doc("main").get();
+  const doc = await db()
+    .collection("users")
+    .doc(uid)
+    .collection("certificate")
+    .doc("main")
+    .get();
   return doc.exists ? doc.data() : null;
 }
 

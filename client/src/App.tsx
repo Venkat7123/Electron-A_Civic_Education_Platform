@@ -15,8 +15,10 @@ import Module3 from "./pages/Module3.tsx";
 import Module4 from "./pages/Module4.tsx";
 import ModuleLocked from "./pages/ModuleLocked.tsx";
 import Certificate from "./pages/Certificate.tsx";
-import { ProgressProvider } from "./hooks/useProgress.tsx";
+import { ProgressProvider } from "./components/ProgressProvider.tsx";
 import { GuidedTouchProvider } from "./components/guided-touch/GuidedTouch.tsx";
+import { ProtectedRoute } from "./components/ProtectedRoute.tsx";
+import { PageTitle } from "./components/PageTitle.tsx";
 
 const queryClient = new QueryClient();
 
@@ -29,19 +31,19 @@ const App = () => (
         <BrowserRouter>
           <GuidedTouchProvider>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/roadmap" element={<Roadmap />} />
-              <Route path="/module/1" element={<Module1 />} />
-              <Route path="/module/2" element={<Module2 />} />
-              <Route path="/module/3" element={<Module3 />} />
-              <Route path="/module/4" element={<Module4 />} />
-              <Route path="/module/:id" element={<ModuleLocked />} />
-              <Route path="/certificate" element={<Certificate />} />
+              <Route path="/" element={<><PageTitle title="Home" /><Index /></>} />
+              <Route path="/login" element={<><PageTitle title="Login" /><Login /></>} />
+              <Route path="/signup" element={<><PageTitle title="Signup" /><Signup /></>} />
+              <Route path="/dashboard" element={<ProtectedRoute><PageTitle title="Modules" /><Dashboard /></ProtectedRoute>} />
+              <Route path="/roadmap" element={<ProtectedRoute><PageTitle title="Roadmap" /><Roadmap /></ProtectedRoute>} />
+              <Route path="/module/1" element={<ProtectedRoute><PageTitle title="Module 1" /><Module1 /></ProtectedRoute>} />
+              <Route path="/module/2" element={<ProtectedRoute><PageTitle title="Module 2" /><Module2 /></ProtectedRoute>} />
+              <Route path="/module/3" element={<ProtectedRoute><PageTitle title="Module 3" /><Module3 /></ProtectedRoute>} />
+              <Route path="/module/4" element={<ProtectedRoute><PageTitle title="Module 4" /><Module4 /></ProtectedRoute>} />
+              <Route path="/module/:id" element={<ProtectedRoute><PageTitle title="Locked" /><ModuleLocked /></ProtectedRoute>} />
+              <Route path="/certificate" element={<ProtectedRoute><PageTitle title="Certificate" /><Certificate /></ProtectedRoute>} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<><PageTitle title="Not Found" /><NotFound /></>} />
             </Routes>
           </GuidedTouchProvider>
         </BrowserRouter>

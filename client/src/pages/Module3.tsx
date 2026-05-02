@@ -177,13 +177,14 @@ function EnterStation({ onDone }: { onDone: () => void }) {
 
       {/* Slider */}
       <div ref={trackRef} className="relative w-full max-w-lg h-12 rounded-full bg-secondary cursor-pointer select-none"
-        onPointerDown={() => { dragging.current = true; }}
-        onPointerUp={() => { dragging.current = false; }}
-        onPointerLeave={() => { dragging.current = false; }}
-        onPointerMove={onPointerMove}>
-        <div className="absolute inset-y-0 left-0 rounded-full bg-primary/30 transition-all" style={{ width: `${progress}%` }} />
+        onPointerDown={(e) => { dragging.current = true; onPointerMove(e); e.currentTarget.setPointerCapture(e.pointerId); }}
+        onPointerUp={(e) => { dragging.current = false; e.currentTarget.releasePointerCapture(e.pointerId); }}
+        onPointerCancel={(e) => { dragging.current = false; e.currentTarget.releasePointerCapture(e.pointerId); }}
+        onPointerMove={onPointerMove}
+        style={{ touchAction: 'none' }}>
+        <div className="absolute inset-y-0 left-0 rounded-full bg-primary/30" style={{ width: `${progress}%` }} />
         <div data-gt-id="gt-enter-thumb"
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-primary shadow-lg flex items-center justify-center text-white cursor-grab active:cursor-grabbing transition-all"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-primary shadow-lg flex items-center justify-center text-white cursor-grab active:cursor-grabbing"
           style={{ left: `${progress}%` }}>
           {inside ? <Check className="h-5 w-5" /> : "→"}
         </div>

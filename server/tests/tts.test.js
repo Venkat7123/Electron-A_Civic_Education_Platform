@@ -54,10 +54,14 @@ const VALID_TOKEN = "Bearer valid-firebase-token";
 
 describe("POST /api/tts", () => {
   let app;
-  beforeAll(() => { app = buildApp(); });
+  beforeAll(() => {
+    app = buildApp();
+  });
 
   it("returns 401 when no auth header", async () => {
-    const res = await request(app).post("/api/tts").send({ text: "Hello", language: "en-IN" });
+    const res = await request(app)
+      .post("/api/tts")
+      .send({ text: "Hello", language: "en-IN" });
     expect(res.status).toBe(401);
   });
 
@@ -78,7 +82,10 @@ describe("POST /api/tts", () => {
   });
 
   it("returns cached audio when cache hit", async () => {
-    mockGetTtsCache.mockResolvedValueOnce({ audio: "cachedBase64", language: "en-IN" });
+    mockGetTtsCache.mockResolvedValueOnce({
+      audio: "cachedBase64",
+      language: "en-IN",
+    });
     const res = await request(app)
       .post("/api/tts")
       .set("Authorization", VALID_TOKEN)

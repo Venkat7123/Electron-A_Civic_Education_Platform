@@ -36,7 +36,9 @@ async function bootstrap() {
   } else {
     // Use application default credentials (works on GCP / Cloud Run)
     firebaseConfig.credential = admin.credential.applicationDefault();
-    logger.warn("[firebase] No service account keys found — using application default credentials");
+    logger.warn(
+      "[firebase] No service account keys found — using application default credentials",
+    );
   }
 
   if (!admin.apps.length) {
@@ -57,13 +59,17 @@ async function bootstrap() {
     cors({
       origin: (origin, cb) => {
         // Allow requests with no origin (e.g. mobile apps, curl in dev)
-        if (!origin || allowedOrigins.includes(origin) || allowedOrigins.includes("*")) {
+        if (
+          !origin ||
+          allowedOrigins.includes(origin) ||
+          allowedOrigins.includes("*")
+        ) {
           return cb(null, true);
         }
         return cb(new Error(`CORS: origin ${origin} not allowed`));
       },
       credentials: true,
-    })
+    }),
   );
 
   // ── Body parsing ────────────────────────────────────────────────────────────
@@ -73,7 +79,9 @@ async function bootstrap() {
   app.use((req, res, next) => {
     const start = Date.now();
     res.on("finish", () => {
-      logger.info(`${req.method} ${req.path} ${res.statusCode} ${Date.now() - start}ms`);
+      logger.info(
+        `${req.method} ${req.path} ${res.statusCode} ${Date.now() - start}ms`,
+      );
     });
     next();
   });
@@ -82,7 +90,9 @@ async function bootstrap() {
   app.use(generalRateLimiter);
 
   // ── Health check (no auth) ──────────────────────────────────────────────────
-  app.get("/health", (_req, res) => res.json({ status: "ok", env: process.env.NODE_ENV }));
+  app.get("/health", (_req, res) =>
+    res.json({ status: "ok", env: process.env.NODE_ENV }),
+  );
 
   // ── API Routes ──────────────────────────────────────────────────────────────
   app.use("/api/chat", chatRoutes);

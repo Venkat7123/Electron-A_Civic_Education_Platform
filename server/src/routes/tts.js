@@ -18,7 +18,12 @@ router.post("/", verifyToken, async (req, res, next) => {
   try {
     const parsed = ttsSchema.safeParse(req.body);
     if (!parsed.success) {
-      return res.status(400).json({ error: "Invalid request body", details: parsed.error.flatten() });
+      return res
+        .status(400)
+        .json({
+          error: "Invalid request body",
+          details: parsed.error.flatten(),
+        });
     }
 
     const { text, language } = parsed.data;

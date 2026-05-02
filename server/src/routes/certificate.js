@@ -2,7 +2,11 @@
 
 const express = require("express");
 const { verifyToken } = require("../middleware/verifyToken");
-const { getProgress, getCertificate, issueCertificate } = require("../services/firestore");
+const {
+  getProgress,
+  getCertificate,
+  issueCertificate,
+} = require("../services/firestore");
 
 const router = express.Router();
 
@@ -19,12 +23,13 @@ router.post("/", verifyToken, async (req, res, next) => {
     // Check all modules are completed
     const progress = await getProgress(uid);
     const allCompleted = REQUIRED_MODULES.every(
-      (m) => progress[m] && progress[m].completed === true
+      (m) => progress[m] && progress[m].completed === true,
     );
 
     if (!allCompleted) {
       return res.status(403).json({
-        error: "All 4 modules must be completed before a certificate can be issued",
+        error:
+          "All 4 modules must be completed before a certificate can be issued",
       });
     }
 

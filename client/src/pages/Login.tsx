@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AuthShell } from "@/components/AuthShell";
@@ -32,8 +32,8 @@ export default function Login() {
       setEmail(email);
       setName(userCredential.user.displayName || email.split("@")[0] || "Friend");
       nav("/dashboard");
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err: unknown) {
+      toast({ title: "Error", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
     }
   };
 
@@ -43,16 +43,19 @@ export default function Login() {
       setEmail(result.user.email || "");
       setName(result.user.displayName || result.user.email?.split("@")[0] || "Friend");
       nav("/dashboard");
-    } catch (err: any) {
-      toast({ title: "Error", description: err.message, variant: "destructive" });
+    } catch (err: unknown) {
+      toast({ title: "Error", description: err instanceof Error ? err.message : String(err), variant: "destructive" });
     }
   };
 
   return (
     <AuthShell bgImage="/login.png">
-      <div className="w-full max-w-md rounded-3xl bg-card p-8 shadow-card">
-        <h1 className="text-2xl font-bold">{t("welcomeBack")}</h1>
-        <p className="mb-6 mt-1 text-sm text-muted-foreground">{t("loginSub")}</p>
+      <div className="w-full max-w-md rounded-3xl bg-card p-8 shadow-card relative">
+        <Button variant="ghost" size="icon" onClick={() => nav(-1)} className="absolute left-4 top-4 h-8 w-8 rounded-full">
+          <ArrowLeft className="h-4 w-4" />
+        </Button>
+        <h1 className="mt-2 text-center text-2xl font-bold">{t("welcomeBack")}</h1>
+        <p className="mb-6 mt-1 text-center text-sm text-muted-foreground">{t("loginSub")}</p>
 
         <form className="space-y-3" onSubmit={submit}>
           <div className="relative">

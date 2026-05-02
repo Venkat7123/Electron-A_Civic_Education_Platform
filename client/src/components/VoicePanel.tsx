@@ -76,7 +76,9 @@ export function VoicePanel({ moduleId, step }: { moduleId: number; step: number 
     <motion.aside 
       drag 
       dragMomentum={false}
-      className="fixed left-6 bottom-6 z-40 w-[320px] overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl backdrop-blur-md animate-in slide-in-from-bottom-8 duration-500 cursor-move"
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="fixed left-6 bottom-6 z-40 w-[320px] overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-2xl backdrop-blur-md cursor-move"
     >
       {/* Header */}
       <div className="flex items-center gap-2 border-b border-violet-100 bg-violet-50/50 px-4 py-3">

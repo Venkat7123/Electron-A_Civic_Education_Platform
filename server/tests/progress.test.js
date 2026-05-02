@@ -50,7 +50,9 @@ const VALID_TOKEN = "Bearer valid-firebase-token";
 
 describe("GET /api/progress", () => {
   let app;
-  beforeAll(() => { app = buildApp(); });
+  beforeAll(() => {
+    app = buildApp();
+  });
 
   it("returns 401 when no auth header", async () => {
     const res = await request(app).get("/api/progress");
@@ -74,7 +76,9 @@ describe("GET /api/progress", () => {
 
 describe("POST /api/progress/:moduleId", () => {
   let app;
-  beforeAll(() => { app = buildApp(); });
+  beforeAll(() => {
+    app = buildApp();
+  });
 
   it("returns 401 when no auth header", async () => {
     const res = await request(app)

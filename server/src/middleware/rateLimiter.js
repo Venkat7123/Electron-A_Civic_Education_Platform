@@ -7,7 +7,9 @@ const chatRateLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 20,
   keyGenerator: (req) => req.user?.uid || req.ip,
-  message: { error: "Too many chat requests. Please wait a moment and try again." },
+  message: {
+    error: "Too many chat requests. Please wait a moment and try again.",
+  },
   standardHeaders: true,
   legacyHeaders: false,
 });

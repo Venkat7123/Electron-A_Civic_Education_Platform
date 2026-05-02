@@ -206,7 +206,7 @@ function Form6Draggable({ id, label }: { id: string; label: string }) {
   const style = transform ? { transform: `translate3d(${transform.x}px,${transform.y}px,0)`, touchAction: "none" } : { touchAction: "none" as const };
   return (
     <div ref={setNodeRef} data-gt-id={`gt-doc-${id}`} style={style} {...listeners} {...attributes}
-      className={`cursor-grab select-none rounded-xl border bg-card px-4 py-3 text-sm font-semibold shadow-sm transition ${isDragging ? "opacity-50 scale-105" : "hover:shadow-md"}`}>
+      className={`cursor-grab select-none rounded-xl border bg-card px-4 py-3 text-sm font-semibold shadow-sm transition-shadow transition-opacity ${isDragging ? "opacity-50 scale-105" : "hover:shadow-md"}`}>
       {label}
     </div>
   );

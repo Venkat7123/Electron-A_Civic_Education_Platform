@@ -28,7 +28,10 @@ const VOICE_MAP = {
  */
 async function synthesize(text, language) {
   // Graceful stub when credentials are missing (dev mode)
-  if (!process.env.GOOGLE_APPLICATION_CREDENTIALS && !process.env.GCP_PROJECT_ID) {
+  if (
+    !process.env.GOOGLE_APPLICATION_CREDENTIALS &&
+    !process.env.GCP_PROJECT_ID
+  ) {
     const stub = Buffer.from("stub-audio").toString("base64");
     return stub;
   }

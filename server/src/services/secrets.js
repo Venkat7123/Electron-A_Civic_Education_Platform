@@ -1,6 +1,7 @@
 "use strict";
 
 const { SecretManagerServiceClient } = require("@google-cloud/secret-manager");
+const logger = require("../utils/logger");
 
 let client;
 
@@ -25,7 +26,7 @@ async function getSecret(projectId, secretName) {
  */
 async function loadSecrets() {
   if (process.env.USE_SECRET_MANAGER !== "true") {
-    console.log("[secrets] Using local .env — skipping GCP Secret Manager");
+    logger.info("[secrets] Using local .env — skipping GCP Secret Manager");
     return;
   }
 
@@ -41,19 +42,19 @@ async function loadSecrets() {
     "FIREBASE_PRIVATE_KEY",
   ];
 
-  console.log("[secrets] Loading secrets from GCP Secret Manager...");
+  logger.info("[secrets] Loading secrets from GCP Secret Manager...");
   await Promise.all(
     secretKeys.map(async (key) => {
       try {
         const value = await getSecret(projectId, key);
         process.env[key] = value;
       } catch (err) {
-        console.error(`[secrets] Failed to load secret: ${key}`, err.message);
+        logger.error(`[secrets] Failed to load secret: ${key}`, err.message);
         throw err;
       }
-    })
+    }),
   );
-  console.log("[secrets] All secrets loaded successfully");
+  logger.info("[secrets] All secrets loaded successfully");
 }
 
 module.exports = { loadSecrets };

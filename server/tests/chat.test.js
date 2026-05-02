@@ -36,15 +36,27 @@ jest.mock("firebase-admin", () => ({
 
 // ── Mock Gemini service ───────────────────────────────────────────────────────
 jest.mock("../src/services/gemini", () => ({
-  generateReply: jest.fn().mockResolvedValue("This is a mock Gemini reply about Indian elections."),
+  generateReply: jest
+    .fn()
+    .mockResolvedValue("This is a mock Gemini reply about Indian elections."),
 }));
 
 // ── Mock Firestore service ────────────────────────────────────────────────────
 jest.mock("../src/services/firestore", () => ({
   saveChatMessage: jest.fn().mockResolvedValue(undefined),
   getChatHistory: jest.fn().mockResolvedValue([
-    { role: "user", message: "What is an EVM?", moduleContext: "module3", timestamp: null },
-    { role: "model", message: "EVM stands for Electronic Voting Machine.", moduleContext: "module3", timestamp: null },
+    {
+      role: "user",
+      message: "What is an EVM?",
+      moduleContext: "module3",
+      timestamp: null,
+    },
+    {
+      role: "model",
+      message: "EVM stands for Electronic Voting Machine.",
+      moduleContext: "module3",
+      timestamp: null,
+    },
   ]),
   getProgress: jest.fn(),
   updateProgress: jest.fn(),
@@ -71,7 +83,9 @@ const VALID_TOKEN = "Bearer valid-firebase-token";
 
 describe("POST /api/chat", () => {
   let app;
-  beforeAll(() => { app = buildApp(); });
+  beforeAll(() => {
+    app = buildApp();
+  });
 
   it("returns 401 when no Authorization header", async () => {
     const res = await request(app).post("/api/chat").send({
@@ -102,7 +116,11 @@ describe("POST /api/chat", () => {
     const res = await request(app)
       .post("/api/chat")
       .set("Authorization", VALID_TOKEN)
-      .send({ message: "What is an election?", moduleContext: "module1", history: [] });
+      .send({
+        message: "What is an election?",
+        moduleContext: "module1",
+        history: [],
+      });
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty("reply");
     expect(typeof res.body.reply).toBe("string");
@@ -111,10 +129,14 @@ describe("POST /api/chat", () => {
 
 describe("GET /api/chat/history", () => {
   let app;
-  beforeAll(() => { app = buildApp(); });
+  beforeAll(() => {
+    app = buildApp();
+  });
 
   it("returns 401 when no Authorization header", async () => {
-    const res = await request(app).get("/api/chat/history?moduleContext=module1");
+    const res = await request(app).get(
+      "/api/chat/history?moduleContext=module1",
+    );
     expect(res.status).toBe(401);
   });
 

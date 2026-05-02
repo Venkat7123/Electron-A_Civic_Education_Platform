@@ -67,5 +67,7 @@ export function loadProgress(): ProgressState {
 export function saveProgress(state: ProgressState) {
   try {
     localStorage.setItem(KEY, JSON.stringify(state));
-  } catch {}
+  } catch (error) {
+    console.error("Failed to save progress to localStorage", error);
+  }
 }
