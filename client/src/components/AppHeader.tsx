@@ -91,7 +91,7 @@ export function AppHeader({ onChat, showProgress = false, marketing = false }: {
             {state.email ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="group flex items-center gap-2 rounded-full p-0.5 transition-all hover:ring-4 hover:ring-primary/10 outline-none">
+                  <button aria-label="User menu" className="group flex items-center gap-2 rounded-full p-0.5 transition-all hover:ring-4 hover:ring-primary/10 outline-none">
                     <div className="rounded-full ring-2 ring-primary/20 ring-offset-1 ring-offset-background shadow-sm transition-all group-hover:ring-primary/40">
                       <ElectronAvatar size={36} />
                     </div>

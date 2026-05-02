@@ -4,6 +4,15 @@
 
 Through a series of immersive modules, users can explore everything from the foundations of the Indian Constitution to the physical mechanics of an EVM. With localized content and real-time AI guidance, Electron makes civic literacy accessible to everyone, regardless of their language or background.
 
+## 🎯 Problem Statement & Solution Alignment
+
+**The Problem:** Traditional civic education relies heavily on static, dense texts that fail to engage modern citizens. Many individuals lack a practical understanding of their rights, the electoral process, and local governance structures due to language barriers and inaccessible materials.
+
+**The Solution:** Electron addresses this gap by providing an interactive, multilingual platform that transforms civic concepts into engaging, guided-touch experiences.
+- **Accessibility:** By offering content in regional languages (Tamil, Hindi, etc.) alongside high-quality TTS, we ensure no citizen is left behind.
+- **Interactivity:** The 3D EVM simulation and guided workflows demystify complex processes (like Form 6 registration), translating theory into practice.
+- **AI Guidance:** The Gemini-powered chat companion acts as an on-demand tutor, ensuring users always have context-aware support.
+
 ## 🚀 Features
 
 ### 🏛️ Interactive Civic Modules

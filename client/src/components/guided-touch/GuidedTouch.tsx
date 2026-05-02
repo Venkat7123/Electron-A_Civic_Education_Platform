@@ -35,6 +35,7 @@ export function GuidedTouchProvider({ children }: { children: ReactNode }) {
     setPos({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
     setHint(step.hint);
     setGesture(step.gesture);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId, steps, state.guidedTouch, tick]);
 
   useEffect(() => { recompute(); }, [recompute]);

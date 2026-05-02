@@ -53,7 +53,7 @@ export function VoicePanel({ moduleId, step }: { moduleId: number; step: number 
       clearTimeout(timer);
       synth.cancel();
     };
-  }, [moduleId, step, text]);
+  }, [moduleId, step, text, lang, synth]);
 
   const togglePlay = () => {
     if (synth.speaking && !synth.paused) {
@@ -107,6 +107,7 @@ export function VoicePanel({ moduleId, step }: { moduleId: number; step: number 
           className={playing ? "bg-violet-600 hover:bg-violet-700 shadow-md" : "border-slate-300 hover:bg-slate-100"} 
           onClick={togglePlay}
           title={playing ? "Pause" : "Play"}
+          aria-label={playing ? "Pause voice guide" : "Play voice guide"}
         >
           {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 ml-0.5" />}
         </Button>
@@ -116,6 +117,7 @@ export function VoicePanel({ moduleId, step }: { moduleId: number; step: number 
           className="border-slate-300 hover:bg-slate-100 text-slate-600" 
           onClick={stop}
           title="Stop"
+          aria-label="Stop voice guide"
         >
           <Square className="h-4 w-4 fill-current" />
         </Button>
